@@ -15,7 +15,25 @@ def search_log_file(log_file_path, pattern):
                 logging.basicConfig(filename="C:\\Users\\User\\OneDrive\\Desktop\\Python automation\\logfile.txt", level=logging.INFO)
                 logging.error('Alert ! ')
                 
-      
+def count_word_occurrences(log_file_path, word):
+    word_count = 0
+
+    with open(log_file_path, "r") as log_file:
+        for line in log_file:
+            # Split the line into words using whitespace as the delimiter
+            words = line.split()
+            # Count the occurrences of the word in the line
+            word_count += words.count(word)
+
+    return word_count
+
+log_file_path = "C:\\Users\\User\\OneDrive\\Desktop\\Python automation\\logfile.txt"
+search_word = "network"
+
+result = count_word_occurrences(log_file_path, search_word)
+print(f"The word '{search_word}' appears {result} times in the log file.")
+
+
 log_file_path = "C:\\Users\\User\\OneDrive\\Desktop\\Python automation\\logfile.txt"
 pattern = r'\bprocess request\b'  # Searching for the word
 search_log_file(log_file_path, pattern)
@@ -36,3 +54,6 @@ with open(log_file_path, "r") as log_file:
             print("Component:", component)
             print("Message:", message)
             print()  # Print a new line for separation
+
+
+
